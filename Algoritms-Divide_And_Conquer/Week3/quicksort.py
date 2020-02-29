@@ -51,5 +51,7 @@ def ChoosePivot(arr, first, last):
         else:
             position = mid
     return position
-list = [4,5,2,3,1]
+
+
+list = [int(line) for line in open("QuickSort.txt")]
 QuickSort(list)
