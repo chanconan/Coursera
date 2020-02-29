@@ -15,35 +15,43 @@ def QuickSortHelp(nums, low, high, pivot):
     return comparisons
 
 def Partition(nums, low, high, pivot):
-    #pivot = ChoosePivot(nums, low, high)
-    i = low
-    comparisons = high - low - 1
+    #pivot = ChoosePivot(nums, low, high
     if pivot == "low":
-        pivot = low
-        i += 1
-        for j in range(low + 1, high):
-            if nums[j] < nums[pivot]:
-                Swap(nums, i, j)
-                i += 1
-        Swap(nums, i - 1, pivot)
-        return i - 1, comparisons
+        i, comparisons = PartitionLow(nums, low, high)
     elif pivot == "high":
-        pivot = high - 1
-        for j in range (low, high - 1):
-            if nums[j] < nums[pivot]:
-                Swap(nums, i, j)
-                i += 1
-        Swap(nums, i, pivot)
-        print(nums)
-        return i, comparisons
+        i, comparisons = PartitionHigh(nums, low, high)
     else:
         pivot = ChoosePivot(nums, low, high)
+    return i, comparisons
 
 
 def Swap(arr, first, last):
     temp = arr[first];
     arr[first] = arr[last];
     arr[last] = temp;
+
+def PartitionLow(nums, low, high):
+    pivot = low
+    i = low + 1
+    comparisons = high - low - 1
+    for j in range(low + 1, high):
+        if nums[j] < nums[pivot]:
+            Swap(nums, i, j)
+            i += 1
+    Swap(nums, i - 1, pivot)
+    return i - 1, comparisons
+
+def PartitionHigh(nums, low, high):
+    pivot = high - 1
+    i = low
+    comparisons = high - low - 1
+    for j in range (low, high - 1):
+        if nums[j] < nums[pivot]:
+            Swap(nums, i, j)
+            i += 1
+    Swap(nums, i, pivot)
+    return i, comparisons
+
 
 # Take the three indices and swap values so that the value in the middle of the array is the median of values
 # Swap middle value with first element so we can have pivot at the beginning on the list
@@ -68,5 +76,5 @@ def ChoosePivot(arr, first, last):
 
 
 #list = [int(line) for line in open("QuickSort.txt")]
-list = [4,3,2,5,1]
+list = [4,1,2,5,3]
 QuickSort(list, "high")
