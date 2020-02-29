@@ -77,4 +77,5 @@ def ChoosePivot(arr, first, last):
 
 #list = [int(line) for line in open("QuickSort.txt")]
 list = [4,1,2,5,3]
+QuickSort(list, "low")
 QuickSort(list, "high")
