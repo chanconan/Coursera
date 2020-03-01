@@ -4,7 +4,7 @@
 # Once it reaches the end of the array, the pivot value should swap with the "right-most" smaller value.
 def quickSort(nums, pivot):
     comparisons = quickSortHelp(nums, 0, len(nums), pivot)
-    return nums, comparisons
+    return comparisons
 
 def quickSortHelp(nums, low, high, pivot):
     comparisons = 0
@@ -70,8 +70,5 @@ def choosePivot(arr, first, last):
 list = [int(line) for line in open("QuickSort.txt")]
 # list = [4,1,2,5,3]
 #quickSort(list, "low") 
-# A: 162085
-# quickSort(list, "high") 
-# A: 164123
+#quickSort(list, "high") 
 quickSort(list, "mid")
-# 138382
