@@ -21,7 +21,8 @@ def partition(nums, low, high, pivot):
     elif pivot == "high":
         i, comparisons = partitionHigh(nums, low, high)
     else:
-        pivot = ChoosePivot(nums, low, high)
+        pivot = choosePivot(nums, low, high)
+        i, comparisons = partition(nums, low, high)
     return i, comparisons
 
 
@@ -32,11 +33,14 @@ def swap(arr, first, last):
 
 def partitionLow(nums, low, high):
     pivot = low
-    i = low + 1
+    i = low
     comparisons = high - low - 1
-    for j in range(low + 1, high):
-        if nums[j] < nums[pivot]:
-            Swap(nums, i, j)
+    for j in range(low, high):
+        if nums[j] == nums[pivot]:
+            i += 1
+            continue
+        elif nums[j] < nums[pivot]:
+            swap(nums, i, j)
             i += 1
     swap(nums, i - 1, pivot)
     return i - 1, comparisons
@@ -45,13 +49,16 @@ def partitionHigh(nums, low, high):
     pivot = high - 1
     i = low
     comparisons = high - low - 1
-    for j in range (low, high - 1):
-        if nums[j] < nums[pivot]:
+    for j in range(low, high):
+        if nums[j] == nums[pivot]:
+            i += 1
+            continue
+        elif nums[j] < nums[pivot]:
             swap(nums, i, j)
             i += 1
-    swap(nums, i, pivot)
-    return i, comparisons
-
+    swap(nums, i - 1, pivot)
+    # nums[low], nums[pivot] = nums[pivot], nums[low]
+    return i - 1, comparisons
 
 # Take the three indices and swap values so that the value in the middle of the array is the median of values
 # Swap middle value with first element so we can have pivot at the beginning on the list
@@ -75,7 +82,11 @@ def choosePivot(arr, first, last):
     return position
 
 
-#list = [int(line) for line in open("QuickSort.txt")]
-list = [4,1,2,5,3]
-quickSort(list, "low")
+list = [int(line) for line in open("QuickSort.txt")]
+# list = [4,5,2,3,1]
+#quickSort(list, "low")
+#162085
 quickSort(list, "high")
+#221995
+#160361
+# quickSort(list, "mid")
