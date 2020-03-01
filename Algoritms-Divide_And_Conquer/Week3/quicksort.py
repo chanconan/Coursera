@@ -46,7 +46,8 @@ def partitionLow(nums, low, high):
     return i - 1, comparisons
 
 def partitionHigh(nums, low, high):
-    pivot = high - 1
+    swap(nums, low, high - 1)
+    pivot = low
     i = low
     comparisons = high - low - 1
     for j in range(low, high):
@@ -57,7 +58,6 @@ def partitionHigh(nums, low, high):
             swap(nums, i, j)
             i += 1
     swap(nums, i - 1, pivot)
-    # nums[low], nums[pivot] = nums[pivot], nums[low]
     return i - 1, comparisons
 
 # Take the three indices and swap values so that the value in the middle of the array is the median of values
@@ -83,10 +83,9 @@ def choosePivot(arr, first, last):
 
 
 list = [int(line) for line in open("QuickSort.txt")]
-# list = [4,5,2,3,1]
-#quickSort(list, "low")
-#162085
-quickSort(list, "high")
-#221995
-#160361
+# list = [4,1,2,5,3]
+#quickSort(list, "low") 
+# A: 162085
+#quickSort(list, "high") 
+# A: 164123
 # quickSort(list, "mid")
