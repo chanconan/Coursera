@@ -1,4 +1,4 @@
-import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 from bs4 import BeautifulSoup
 
 # Use BeautifulSoup
@@ -8,6 +8,7 @@ html = urllib.request.urlopen(url).read()
 soup = BeautifulSoup(html, 'html.parser')
 
 # Retrieve all of the anchor tags
+# And pulls out the value of href
 tags = soup('a')
 for tag in tags:
     print(tag.get('href', None))
