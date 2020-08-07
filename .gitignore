@@ -3,3 +3,6 @@
 
 # Beautiful Soup
 bs4
+
+# SQLITE
+*.sqlite
