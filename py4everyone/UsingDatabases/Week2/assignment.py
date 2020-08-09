@@ -51,7 +51,7 @@ def lookup(data, key):
 
 fname = input('Enter file name: ')
 if (len(fname) < 1): fname = 'Library.xml'
-xmlFile = "/Users/conanchan/Documents/Coursera/py4everyone/tracks/"+fname
+xmlFile = "/Users/conanchan/Documents/Coursera/py4everyone/UsingDatabases/tracks/"+fname
 
 library = ET.parse(xmlFile)
 
