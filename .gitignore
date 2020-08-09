@@ -6,3 +6,5 @@ bs4
 
 # SQLITE
 *.sqlite
+
+py4everyone/tracks
