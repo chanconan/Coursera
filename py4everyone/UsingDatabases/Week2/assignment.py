@@ -5,21 +5,31 @@ import xml.etree.ElementTree as ET
 conn = sqlite3.connect('wk2_assignment.sqlite')
 cur = conn.cursor()
 
-cur.execute('DROP TABLE IF EXISTS Artist')
-cur.execute('DROP TABLE IF EXISTS Genre')
-cur.execute('DROP TABLE IF EXISTS Album')
-cur.execute('DROP TABLE IF EXISTS Track')
+# Make some fresh tables using executescript()
+cur.executescript('''
+DROP TABLE IF EXISTS Artist;
+DROP TABLE IF EXISTS Album;
+DROP TABLE IF EXISTS Track;
 
+CREATE TABLE Artist (
+    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    name    TEXT UNIQUE
+);
 
-cur.execute('''
-CREATE TABLE Artist (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT UNIQUE)''')
-cur.execute('''
-CREATE TABLE Genre (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT UNIQUE)''')
-cur.execute('''
-CREATE TABLE Album (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, artist_id INTEGER, title TEXT UNIQUE)''')
-cur.execute('''
-CREATE TABLE Track (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT UNIQUE, album_id INTEGER, genre_id INTEGER, len INTEGER, rating INTEGER, count INTEGER)''')
+CREATE TABLE Album (
+    id  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    artist_id  INTEGER,
+    title   TEXT UNIQUE
+);
 
+CREATE TABLE Track (
+    id  INTEGER NOT NULL PRIMARY KEY 
+        AUTOINCREMENT UNIQUE,
+    title TEXT  UNIQUE,
+    album_id  INTEGER,
+    len INTEGER, rating INTEGER, count INTEGER
+);
+''')
 
 fname = input('Enter file name: ')
 if (len(fname) < 1): fname = 'mbox-short.txt'
