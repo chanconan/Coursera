@@ -8,3 +8,4 @@ bs4
 *.sqlite
 
 py4everyone/*/tracks
+**.json
