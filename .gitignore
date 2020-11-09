@@ -9,3 +9,5 @@ bs4
 
 py4everyone/*/tracks
 **.json
+*.csv
+quiz.py
